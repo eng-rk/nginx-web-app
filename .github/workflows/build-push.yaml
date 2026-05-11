@@ -3,6 +3,10 @@ run-name: Build and Push Docker Image
 
 on:
   workflow_dispatch:
+    inputs:
+      image-version:
+        type: string
+        required: true
 
 env:
   DOCKER_USERNAME: rowank
@@ -23,5 +27,5 @@ jobs:
         with:
           context: .
           push: true
-          tags: rowank/nginx-web-app:v1
-          
+          tags: rowank/nginx-web-app:${{inputs.image-version}}
+
